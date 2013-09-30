@@ -37,6 +37,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiFile.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DefaultAppController.cs" />
@@ -54,15 +57,19 @@
     <Compile Include="DefaultApplicationHost.Designer.cs">
       <DependentUpon>DefaultApplicationHost.cs</DependentUpon>
     </Compile>
+    <Compile Include="DefaultWindowsApiProvider.cs" />
     <Compile Include="Dispatcher.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="IApiModule.cs" />
     <Compile Include="IApiProvider.cs" />
     <Compile Include="IApplicationController.cs" />
     <Compile Include="IApplicationHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptingContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="polaris.config" />
   </ItemGroup>
@@ -70,6 +77,11 @@
     <EmbeddedResource Include="DefaultApplicationHost.resx">
       <DependentUpon>DefaultApplicationHost.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\polaris.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -35,5 +35,10 @@ namespace Polaris
             return true;
         }
 
+        public WebBrowser View
+        {
+            get { return wbrMain; }
+        }
+
     }
 }

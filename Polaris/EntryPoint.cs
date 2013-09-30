@@ -32,6 +32,7 @@ namespace Polaris
         private const string XPATH_APP_HOST = "//boot/app_host";
         private const string XPATH_API_PROVIDER = "//boot/api_provider";
         private const string XPATH_START_PAGE= "//boot/start_page";
+        private const string XPATH_API_MODULES = "//modules/module";
 
         private static void LoadConfiguration( Configuration config)
         {
@@ -44,6 +45,17 @@ namespace Polaris
             config.ApiProviderType      = Helper.GetType(doc.SelectSingleNode(XPATH_API_PROVIDER).InnerText);
             config.HostType             = Helper.GetType(doc.SelectSingleNode(XPATH_APP_HOST).InnerText);
             config.StartPage            = doc.SelectSingleNode(XPATH_START_PAGE).InnerText;
+
+            XmlNodeList xnlModuleNames = doc.SelectNodes(XPATH_API_MODULES);
+            List<Type> modules = new List<Type>();
+            foreach (XmlNode xndModule in xnlModuleNames)
+            {
+                string moduleTypename = xndModule.InnerText;
+                Type typModule = Helper.GetType(moduleTypename);
+                modules.Add(typModule);
+            }
+            config.ApiModules = modules.ToArray();
+
         }
 
         

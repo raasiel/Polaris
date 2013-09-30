@@ -13,5 +13,6 @@ namespace Polaris
         public Type AppControllerType { get; internal set; }
         public Type ApiProviderType { get; internal set; }
         public Type HostType { get; internal set; }
+        public Type[] ApiModules { get; internal set; }
     }
 }
