@@ -12,12 +12,9 @@ namespace Polaris
     [ComVisible(true)] 
     public class ScriptingContext
     {
-        public IApplicationHost Host { get; internal set; } 
-
-        public string SendMessage(string message)
+        public void SendMessage(string module, string method, string parameters, int callId)
         {
-            MessageBox.Show(message);
-            return string.Empty;
+            return module + ":" + method;
         }
     }
 }

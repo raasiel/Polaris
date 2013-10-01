@@ -1,4 +1,6 @@
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Resources\polaris.js
+C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\polaris.config
+C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Html\index.html
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Polaris.Sample.exe
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Polaris.Sample.pdb
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Polaris.dll
@@ -8,5 +10,3 @@ C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\obj\x86\Debug\Polaris.S
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\obj\x86\Debug\Polaris.Sample.csproj.GenerateResource.Cache
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\obj\x86\Debug\Polaris.Sample.exe
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\obj\x86\Debug\Polaris.Sample.pdb
-C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\polaris.config
-C:\Users\shafqat\Documents\GitHub\Polaris\Polaris.Sample\bin\Debug\Html\index.html

@@ -36,13 +36,20 @@ namespace Polaris
 
             hostForm.Show();
             hostForm.Focus();
+            hostForm.FormClosed += new FormClosedEventHandler(hostForm_FormClosed);
             Application.Run();
+            
         }
+
+        void hostForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
         private void HookIntoView()
         {
             ScriptingContext sc = new ScriptingContext();
-            sc.Host = _context.Host;
             _context.Host.View.ObjectForScripting = sc;
             
         }

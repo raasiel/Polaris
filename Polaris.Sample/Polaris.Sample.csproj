@@ -68,15 +68,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Html\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Polaris\Polaris.csproj">
       <Project>{29BC09B3-7DD8-4F57-A67F-8330DF48F1C7}</Project>
       <Name>Polaris</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Html\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
