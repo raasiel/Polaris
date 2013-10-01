@@ -12,7 +12,7 @@ namespace Polaris
             get { return "file"; }
         }
 
-        public bool FileExists(string filename)
+        public bool isExists(string filename)
         {
             return System.IO.File.Exists(filename);
         }

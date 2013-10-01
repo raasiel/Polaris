@@ -15,7 +15,7 @@ namespace Polaris.Sample
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            EntryPoint.Start(args);
+            Polaris.EntryPoint.Start(args);
         }
     }
 }

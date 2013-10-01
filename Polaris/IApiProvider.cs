@@ -11,5 +11,6 @@ namespace Polaris
     public interface IApiProvider
     {
         bool RegisterAvailableModules(Context context);
+        object ProcessApiCall(Dispatch task);
     }
 }

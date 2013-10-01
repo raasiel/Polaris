@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace Polaris
 {
@@ -20,6 +21,15 @@ namespace Polaris
             }
 
             return true;
+        }
+
+        public object ProcessApiCall(Dispatch task)
+        {
+            IApiModule module = _dicModules[task.Module];
+            Type modType = module.GetType();
+            MethodInfo method = modType.GetMethod(task.Method);
+            object ret = method.Invoke (module, task.Parameters );
+            return ret;
         }
 
     }

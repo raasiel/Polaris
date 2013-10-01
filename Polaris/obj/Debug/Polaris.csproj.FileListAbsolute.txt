@@ -7,3 +7,5 @@ C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\obj\Debug\Polaris.DefaultAppli
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\obj\Debug\Polaris.csproj.GenerateResource.Cache
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\obj\Debug\Polaris.dll
 C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\obj\Debug\Polaris.pdb
+C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\bin\Debug\Newtonsoft.Json.dll
+C:\Users\shafqat\Documents\GitHub\Polaris\Polaris\obj\Debug\Polaris.csprojResolveAssemblyReference.cache
