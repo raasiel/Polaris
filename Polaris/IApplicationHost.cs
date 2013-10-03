@@ -12,6 +12,7 @@ namespace Polaris
 {
     public interface IApplicationHost
     {
+        bool Initialize(Context context);
         bool ChangeView(string relativeUrl);
         WebView View { get; }
     }

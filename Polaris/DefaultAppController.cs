@@ -31,9 +31,10 @@ namespace Polaris
         {
             _context.Host = Activator.CreateInstance(_context.Config.HostType) as IApplicationHost;
             Form hostForm = _context.Host as Form;
+            _context.Host.Initialize(_context);
             _context.Host.ChangeView(Helper.TranslateFilePath(_context.Config.StartPage, _context.Config));
-            Dispatcher disp = new Dispatcher();            
-            
+            Dispatcher disp = new Dispatcher();
+            _context.Dispatcher = disp;
             hostForm.Show();
             this.HookIntoView(disp);
             hostForm.Focus();

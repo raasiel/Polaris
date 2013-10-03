@@ -34,9 +34,27 @@ namespace Polaris
             this.wbrMain.Size = new System.Drawing.Size(739, 397);
             this.wbrMain.TabIndex = 0;
 
+            wbrMain.PropertyChanged += wbrMain_PropertyChanged;
             this.Controls.Add(this.wbrMain);
             this.FormClosed += DefaultApplicationHost_FormClosed;
             
+        }
+
+        bool _browserReady = false;
+        void wbrMain_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Debug.WriteLine(e.PropertyName);
+            if (_browserReady == false)
+            {
+                if (wbrMain.IsBrowserInitialized == true)
+                {
+                    if (_context.Dispatcher != null)
+                    {
+                        _browserReady = true;
+                        _context.Dispatcher.ViewReady();
+                    }
+                }
+            }
         }
 
         void DefaultApplicationHost_FormClosed(object sender, FormClosedEventArgs e)
@@ -49,9 +67,11 @@ namespace Polaris
             //this.Text = wbrMain.Document.Title;
         }
 
+        Context _context = null;
         public bool Initialize(Context context)
         {
-            return false;
+            _context = context;
+            return true;
         }
 
         public bool ChangeView(string relativeUrl)

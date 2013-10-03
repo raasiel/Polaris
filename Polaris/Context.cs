@@ -11,5 +11,6 @@ namespace Polaris
         public Configuration Config                 { get; internal set; }
         public IApplicationController Controller    { get; internal set; }
         public IApplicationHost Host                { get; internal set; }
+        public Dispatcher Dispatcher                { get; internal set; }
     }
 }

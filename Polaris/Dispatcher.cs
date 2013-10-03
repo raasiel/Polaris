@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Polaris
 {
-    internal class Dispatcher
+    public class Dispatcher
     {
         List<Thread> _workerThreads = new List<Thread>();
         Queue<Dispatch> _dispatches = new Queue<Dispatch>();
@@ -32,9 +32,14 @@ namespace Polaris
             _scriptContext.OnTaskReceive = this.AddTask;
             _api = Activator.CreateInstance(_context.Config.ApiProviderType) as IApiProvider;
             _api.RegisterAvailableModules(_context);
-            string code = _api.GetModuleCode();
-            //_context.Host.View.ExecuteScript(code);
             this.Start();
+        }
+
+        public void ViewReady()
+        {
+
+            string code = _api.GetModuleCode();
+            _context.Host.View.ExecuteScript(code);            
         }
 
         public int WorkerCount { get; set; }
