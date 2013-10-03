@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
+using CefSharp.WinForms;
 
 namespace Polaris
 {
     public interface IApplicationHost
     {
         bool ChangeView(string relativeUrl);
-        WebBrowser View { get; }
+        WebView View { get; }
     }
 }

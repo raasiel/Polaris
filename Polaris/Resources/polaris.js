@@ -8,10 +8,12 @@ polaris.maxCallId = 0;
 
 
 polaris.prototype.dispatch = function (module, method, parameters, retFunc) {
-    window.external.SendMessage(module, method, parameters,1);
+    polaris.maxCallId++;
+    polaris._msgQueue[polaris.maxCallId] = retFunc;
+    window.external.SendMessage(module, method, parameters, 1);
 }
 
-
+polaris.prototype._msgQueue = {};
 
 
 if ( document.attachEvent ) 

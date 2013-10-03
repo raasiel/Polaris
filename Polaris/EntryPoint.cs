@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 
 namespace Polaris
 {
@@ -16,6 +17,8 @@ namespace Polaris
             // TODO: In the future change make this configurable 
             config.AppBase = AppDomain.CurrentDomain.BaseDirectory;
 
+            SetupBinaries( config.AppBase);
+
             Context context = new Context();
             context.Config = config;
 
@@ -26,6 +29,37 @@ namespace Polaris
             controller.Initialize(context);
             controller.Run();
             
+        }
+
+        private static void SetupBinaries(string baseDirectory)
+        {
+            string src = baseDirectory + "Binaries";
+            DirectoryInfo di = new DirectoryInfo (src);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + file.Name))
+                {
+                    file.CopyTo(AppDomain.CurrentDomain.BaseDirectory + file.Name);
+                }
+            }
+
+            src = baseDirectory + "Binaries\\locales";
+            di = new DirectoryInfo(src);
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "locales"))
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "locales");
+            }
+            di = new DirectoryInfo(src);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "locales\\" + file.Name))
+                {
+                    file.CopyTo(AppDomain.CurrentDomain.BaseDirectory + "locales\\" + file.Name);
+                }
+            }
+
+
+            //AppDomain.CurrentDomain.AppendPrivatePath ( src);
         }
 
         private const string XPATH_APP_CONTROLLER = "//boot/app_controller";

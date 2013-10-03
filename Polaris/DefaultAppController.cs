@@ -50,7 +50,7 @@ namespace Polaris
         private void HookIntoView(Dispatcher dispatcher)
         {
             ScriptingContext sc = new ScriptingContext();
-            _context.Host.View.ObjectForScripting = sc;
+            //_context.Host.View.ObjectForScripting = sc;
             dispatcher.Initialize(_context, sc);            
         }
     }
