@@ -35,8 +35,13 @@ namespace Polaris
             this.wbrMain.TabIndex = 0;
 
             this.Controls.Add(this.wbrMain);
-
+            this.FormClosed += DefaultApplicationHost_FormClosed;
             
+        }
+
+        void DefaultApplicationHost_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         void wbrMain_DocumentTitleChanged(object sender, EventArgs e)

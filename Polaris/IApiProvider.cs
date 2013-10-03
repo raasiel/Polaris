@@ -12,5 +12,6 @@ namespace Polaris
     {
         bool RegisterAvailableModules(Context context);
         object ProcessApiCall(Dispatch task);
+        string GetModuleCode();
     }
 }

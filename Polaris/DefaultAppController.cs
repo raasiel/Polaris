@@ -33,8 +33,9 @@ namespace Polaris
             Form hostForm = _context.Host as Form;
             _context.Host.ChangeView(Helper.TranslateFilePath(_context.Config.StartPage, _context.Config));
             Dispatcher disp = new Dispatcher();            
-            this.HookIntoView(disp);            
+            
             hostForm.Show();
+            this.HookIntoView(disp);
             hostForm.Focus();
             hostForm.FormClosed += new FormClosedEventHandler(hostForm_FormClosed);
             Application.Run();
@@ -50,8 +51,8 @@ namespace Polaris
         private void HookIntoView(Dispatcher dispatcher)
         {
             ScriptingContext sc = new ScriptingContext();
-            //_context.Host.View.ObjectForScripting = sc;
-            dispatcher.Initialize(_context, sc);            
+            _context.Host.View.RegisterJsObject("polarisConn", sc);
+            dispatcher.Initialize(_context, sc);
         }
     }
 }

@@ -2,7 +2,64 @@
 <html>
 	<head>
 		<title>Corona</title>
-        <script src="../Resources/polaris.js?5"></script>
+        
+        <script>
+
+            
+
+            function polaris() {
+                this.maxCallId = 0;
+
+            }
+
+            polaris.maxCallId = 0;
+
+            polaris.prototype.dispatchSync = function (module, method, parameters) {
+                polaris.maxCallId++;
+                polaris._msgQueue[polaris.maxCallId] = retFunc;
+                window.external.SendMessage(module, method, parameters, 1);
+            }
+
+            polaris.prototype.pollMessages = function (key,result) {
+                //alert(window.polaris._msgQueue);
+                    func = window.polaris._msgQueue[key];
+                    func(result);
+                
+            }
+
+            polaris.prototype.dispatch = function (module, method, parameters, retFunc) {
+                window.polaris.maxCallId++;
+                window.polaris._msgQueue[polaris.maxCallId] = retFunc;
+                polarisConn.sendMessage(module, method, parameters, 1);
+                //polarisConn.dox();
+            }
+
+            
+            function file() { };
+            file.prototype.isExists = function (filename, retFunc) {
+                window.polaris.dispatch("file","isExists",filename, retFunc);
+            }
+            polaris.prototype.file = new file ();
+            
+
+            polaris.prototype._msgQueue = {};
+
+            if (window.addEventListener)
+                window.addEventListener('load', load, false)
+            else if (window.attachEvent)
+                window.attachEvent('onload', load)
+
+
+            function load() {
+                             
+                window.polaris = new polaris();
+                alert("calling");
+                window.polaris.file.isExists("[\"e:\\\\jing_setup.exe\"]", function (result) {
+                    alert("result is " + result.toString());
+                });
+                alert("called");
+            }
+        </script>
 	</head>
 	<body>
 	

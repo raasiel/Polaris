@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using CefSharp.WinForms;
+using Newtonsoft.Json;
 
 namespace Polaris
 {
@@ -18,7 +20,6 @@ namespace Polaris
         IApiProvider _api = null;
         private bool _isRunning = false;
 
-
         public Dispatcher()
         {
             this.WorkerCount = 1;
@@ -31,6 +32,8 @@ namespace Polaris
             _scriptContext.OnTaskReceive = this.AddTask;
             _api = Activator.CreateInstance(_context.Config.ApiProviderType) as IApiProvider;
             _api.RegisterAvailableModules(_context);
+            string code = _api.GetModuleCode();
+            //_context.Host.View.ExecuteScript(code);
             this.Start();
         }
 
@@ -47,6 +50,11 @@ namespace Polaris
             }
         }
 
+        public void Stop()
+        {
+            _isRunning = false;
+            _workerThreads.Clear();
+        }
 
         public void AddTask(Dispatch task)
         {
@@ -73,7 +81,10 @@ namespace Polaris
                 }
                 if (task != null)
                 {
-                    _api.ProcessApiCall(task);
+                    task.Result =_api.ProcessApiCall(task);
+                    string resultJson = JsonConvert.SerializeObject(task.Result);
+                    string scriptString = "window.polaris.pollMessages(" + task.CallId.ToString() + "," + resultJson + ");";
+                    _context.Host.View.ExecuteScript(scriptString);
                     task = null;
                 }
                 Thread.Sleep(200);

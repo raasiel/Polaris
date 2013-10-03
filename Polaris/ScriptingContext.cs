@@ -11,16 +11,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Polaris
 {
-    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-    [ComVisible(true)] 
     public class ScriptingContext
     {
         public delegate void NotifyTaskArrival(Dispatch task);
 
         public NotifyTaskArrival OnTaskReceive { get; set; }
 
+        public void dox()
+        {
+            MessageBox.Show("do");
+        }
+
         public void SendMessage(string module, string method, string parameters, int callId)
         {
+            //MessageBox.Show(module);
             Dispatch task = new Dispatch();
             task.CallId = callId;
             task.Module = module;
