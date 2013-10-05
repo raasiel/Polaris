@@ -37,9 +37,11 @@ namespace Polaris
 
         public void ViewReady()
         {
-
-            string code = _api.GetModuleCode();
-            _context.Host.View.ExecuteScript(code);            
+            if (_api != null && _context.Host.View != null)
+            {
+                string code = _api.GetModuleCode();
+                _context.Host.View.ExecuteScript(code);
+            }
         }
 
         public int WorkerCount { get; set; }

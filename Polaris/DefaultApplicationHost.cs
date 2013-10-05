@@ -35,6 +35,7 @@ namespace Polaris
             this.wbrMain.TabIndex = 0;
 
             wbrMain.PropertyChanged += wbrMain_PropertyChanged;
+            wbrMain.ConsoleMessage += wbrMain_ConsoleMessage;
             this.Controls.Add(this.wbrMain);
             this.FormClosed += DefaultApplicationHost_FormClosed;
             
@@ -62,10 +63,6 @@ namespace Polaris
             Application.Exit();
         }
 
-        void wbrMain_DocumentTitleChanged(object sender, EventArgs e)
-        {
-            //this.Text = wbrMain.Document.Title;
-        }
 
         Context _context = null;
         public bool Initialize(Context context)
@@ -77,8 +74,14 @@ namespace Polaris
         public bool ChangeView(string relativeUrl)
         {
             wbrMain.Address = relativeUrl;
+            
             //wbrMain.Navigate ( relativeUrl);    
             return true;
+        }
+
+        void wbrMain_ConsoleMessage(object sender, CefSharp.ConsoleMessageEventArgs e)
+        {
+            Debug.Write(e.Message);
         }
 
         public WebView View
