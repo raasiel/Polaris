@@ -30,6 +30,7 @@ namespace Polaris
             _context = context;
             _scriptContext = scriptContext;
             _scriptContext.OnTaskReceive = this.AddTask;
+            _scriptContext.OnSyncTask = this.ExecuteTask;
             _api = Activator.CreateInstance(_context.Config.ApiProviderType) as IApiProvider;
             _api.RegisterAvailableModules(_context);
             this.Start();
@@ -62,6 +63,15 @@ namespace Polaris
             _isRunning = false;
             _workerThreads.Clear();
         }
+
+        public void ExecuteTask(Dispatch task)
+        {
+            if (task != null)
+            {
+                task.Result = _api.ProcessApiCall(task);
+            }
+        }
+
 
         public void AddTask(Dispatch task)
         {

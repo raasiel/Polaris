@@ -16,11 +16,31 @@ namespace Polaris
         public delegate void NotifyTaskArrival(Dispatch task);
 
         public NotifyTaskArrival OnTaskReceive { get; set; }
+        public NotifyTaskArrival OnSyncTask { get; set; }
 
-        public void dox()
+
+        public string SendMessageSync(string module, string method, string parameters)
         {
-            MessageBox.Show("do");
+            Dispatch task = new Dispatch();
+            task.Module = module;
+            task.Method = method;
+
+            JArray jparms = JsonConvert.DeserializeObject(parameters) as JArray;
+            List<object> parms = new List<object>();
+            foreach (JValue jitem in jparms)
+            {
+                parms.Add(jitem.Value);
+            }
+
+            task.Parameters = parms.ToArray();
+
+            if (this.OnSyncTask != null)
+            {
+                this.OnSyncTask(task);
+            }
+            return JsonConvert.SerializeObject(task.Result);
         }
+
 
         public void SendMessage(string module, string method, string parameters, int callId)
         {

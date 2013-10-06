@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiCall.cs" />
+    <Compile Include="ApiCallAttribute.cs" />
     <Compile Include="ApiFile.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Context.cs" />
@@ -282,7 +282,7 @@
     <Content Include="Binaries\libGLESv2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\polaris.js">
+    <Content Include="Html\polaris.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

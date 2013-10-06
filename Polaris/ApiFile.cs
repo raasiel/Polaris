@@ -20,6 +20,13 @@ namespace Polaris
         }
 
         [ApiCall(false)]
+        public string whatIsMyName(string name)
+        {
+            return string.Format("My name is {0}", name);
+        }
+
+
+        [ApiCall(true)]
         public string[] getFiles(string path, string pattern)
         {
             List<string> ret = new List<string>();

@@ -108,8 +108,14 @@ namespace Polaris
                     
 
                     sb.Append("\tparmJson = JSON.stringify(parms);\n");
-                    sb.Append("\nalert(parmJson);\n");
-                    sb.AppendFormat("\n\twindow.polaris.dispatch(\"{0}\",\"{1}\",parmJson,retFunc);\n", modName, methodName);
+                    if (attr.IsSynchronous)
+                    {
+                        sb.AppendFormat("\n\treturn window.polaris.dispatchSync(\"{0}\",\"{1}\",parmJson);\n", modName, methodName);
+                    }
+                    else
+                    {
+                        sb.AppendFormat("\n\twindow.polaris.dispatch(\"{0}\",\"{1}\",parmJson,retFunc);\n", modName, methodName);
+                    }
                     sb.Append("}\n");
                 }
             }
