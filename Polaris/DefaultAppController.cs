@@ -45,6 +45,7 @@ namespace Polaris
 
         void hostForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _context.Dispatcher.Stop();
             Application.Exit();
         }
 

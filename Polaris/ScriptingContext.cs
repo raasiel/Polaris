@@ -14,10 +14,21 @@ namespace Polaris
     public class ScriptingContext
     {
         public delegate void NotifyTaskArrival(Dispatch task);
+        public delegate string CodeInjectionHandler ();
 
         public NotifyTaskArrival OnTaskReceive { get; set; }
         public NotifyTaskArrival OnSyncTask { get; set; }
+        public CodeInjectionHandler OnCodeInject { get; set; } 
 
+
+        public string GetCodeInject()
+        {
+            if (this.OnCodeInject != null)
+            {
+                return this.OnCodeInject();
+            }
+            return string.Empty;
+        }
 
         public string SendMessageSync(string module, string method, string parameters)
         {

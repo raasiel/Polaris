@@ -37,7 +37,6 @@ namespace Polaris
             wbrMain.PropertyChanged += wbrMain_PropertyChanged;
             wbrMain.ConsoleMessage += wbrMain_ConsoleMessage;
             this.Controls.Add(this.wbrMain);
-            this.FormClosed += DefaultApplicationHost_FormClosed;
             
         }
 
@@ -52,16 +51,12 @@ namespace Polaris
                     if (_context.Dispatcher != null)
                     {
                         _browserReady = true;
-                        _context.Dispatcher.ViewReady();
                     }
                 }
             }
         }
 
-        void DefaultApplicationHost_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
+
 
 
         Context _context = null;

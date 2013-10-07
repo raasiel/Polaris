@@ -34,8 +34,10 @@ else if (window.attachEvent)
 function load() {
     
     window.polaris = new polaris();
-    try{
-        window.loadModules();
+    try {
+        var code = polarisConn.getCodeInject()
+        eval(code);
+        window.loadModules();        
     } catch (e) {
         alert(e.message);
     }

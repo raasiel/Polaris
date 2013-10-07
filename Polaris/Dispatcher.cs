@@ -31,21 +31,18 @@ namespace Polaris
             _scriptContext = scriptContext;
             _scriptContext.OnTaskReceive = this.AddTask;
             _scriptContext.OnSyncTask = this.ExecuteTask;
+            _scriptContext.OnCodeInject = this.GetCodeToInject;
             _api = Activator.CreateInstance(_context.Config.ApiProviderType) as IApiProvider;
             _api.RegisterAvailableModules(_context);
             this.Start();
-        }
-
-        public void ViewReady()
-        {
-            if (_api != null && _context.Host.View != null)
-            {
-                string code = _api.GetModuleCode();
-                _context.Host.View.ExecuteScript(code);
-            }
-        }
+        }        
 
         public int WorkerCount { get; set; }
+
+        private string GetCodeToInject()
+        {
+            return _api.GetModuleCode();            
+        }
 
         private void Start()
         {
