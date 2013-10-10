@@ -1,0 +1,26 @@
+﻿body {
+    font-family: Calibri, Tahoma, Verdana;
+    color: #0768A9;
+}
+
+.button {
+    color: #0768A9;
+}
+
+.footer {
+    font-family: Calibri, Tahoma, Verdana;
+    font-size: small;
+    color: #808080;
+}
+
+.textBox {
+    font-family: Calibri, Tahoma, Verdana;
+    font-size: small;
+    color: #0768A9;
+}
+
+.subtext {
+    font-size:small;
+    font-family: Calibri, Tahoma, Verdana;
+    text-align:justify;
+}

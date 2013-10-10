@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris", "Polaris.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polaris.Sample", "..\Polaris.Sample\Polaris.Sample.csproj", "{45293D95-579E-4299-B077-9AD59C0C92C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hal", "..\..\Hal\Hal\Hal.csproj", "{46FC44DD-9A2B-467A-A679-4600C6F6181C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{45293D95-579E-4299-B077-9AD59C0C92C6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{45293D95-579E-4299-B077-9AD59C0C92C6}.Release|x86.ActiveCfg = Release|x86
 		{45293D95-579E-4299-B077-9AD59C0C92C6}.Release|x86.Build.0 = Release|x86
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{46FC44DD-9A2B-467A-A679-4600C6F6181C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

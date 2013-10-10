@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hal>
+  <action_config>
+    <actions _key="name">
+      <action name="next" text="Next" cmd="prebuit.cmd.next"/>
+      <action name="prev" text="previous" cmd="prebuit.cmd.prev"/>
+      <action name="cancel" text="Cancel" cmd="prebuit.cmd.exit_with_warning"/>
+      <action name="finish" text="Finish" cmd="client.onDo"/>
+    </actions>
+    <sets _key="name">
+      <set name="default">["prev","next","cancel"]</set>
+      <set name="start">["next","cancel"]</set>
+      <set name="finish">["prev","next","finish"]</set>
+    </sets>
+  </action_config>
+  <view_config>
+    <elements>
+      <content>divContent</content>
+      <nav>divNav</nav>
+      <header>h2header</header>
+      <body>divBodytext</body>
+    </elements>
+    <order>['intro','change_security_settings','server_information']</order>
+  </view_config>
+  <client>
+    <model login_mode="1"/>
+  </client>
+  <steps _key="name">
+    <step name="intro"
+          renderer="prebuilt.view.message"
+          actions="start"
+          >
+      <header>Welcome to CRAWiz 6.9 Installation</header>
+      <body>
+        This program will install CRA Wiz and Fair Landing Wiz 6.8 on your computer. it's highly recomend that you exits all windows program before continuing.
+        If you need assistance press F1 at any time if you want to view installation instructions.
+        Press next to continue.
+      </body>
+    </step>
+    <step name="change_security_settings"
+          renderer="prebuilt.view.flow_downward"
+          actions="default">
+      <header>Change Security Settings</header>
+      <body>Specify how users will login to CRA Wiz and Fair Lending Wiz</body>
+      <content _key="name">
+        <text name="label" type="text">You can change how users will be able to login to CRA Wiz and Fair Lending Wiz. Please choose one of the option below</text>
+        <input
+          name="SqlServerName"
+          text="Sql Server:"
+          type="input"
+          model="client.model.sql_server"
+          ></input>
+
+        <radio _key="value" name="radio" type="radio" model="client.model.login_mode">
+          <option value="1" text="Wiz Login Mode(Default)"/>
+          <option value="2" text="Active Directory Login Mode"/>
+        </radio>
+      </content>
+    </step>
+    <step name="server_information"
+          renderer="prebuilt.view.flow_downward"
+          actions="default">
+      <header>Setup needs the system administrtor user name, password and the name of SQL Server</header>
+      <body>Specify how users will login to CRA Wiz and Fair Lending Wiz</body>
+      <content _key="name">
+        <input
+          name="label"
+          text="Sql Server:"
+          model="client.model.sql_server"
+          ></input>
+        <radio name="radio" _key="value">
+          <option value="1" text="Windows Authentication"></option>
+          <option value="2" text="">
+            <content _key="name" conditional="{selected==true}">
+              <input name="txtUsername" text="username"></input>
+              <input name="txtPassword" text="password" isPassword="true"></input>
+            </content>
+          </option>
+        </radio>
+      </content>
+    </step>
+  </steps>
+</hal>

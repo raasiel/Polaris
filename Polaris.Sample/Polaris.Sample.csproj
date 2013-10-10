@@ -71,9 +71,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Html\index.html">
+    <Content Include="Html\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Html\css\wk-tagline-logo_194.jpg" />
+    <Content Include="Html\hal.config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Html\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Html\test.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Polaris\Polaris.csproj">

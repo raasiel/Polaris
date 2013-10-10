@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Polaris
+namespace Polaris.Api
 {
     public class ApiCallAttribute : Attribute
     {

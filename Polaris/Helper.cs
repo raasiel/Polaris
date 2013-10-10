@@ -27,7 +27,13 @@ namespace Polaris
 
         internal static string TranslateFilePath(string path, Configuration config)
         {
-            return path.Replace("{APPPATH}", config.AppBase);
+            string appdir = AppDomain.CurrentDomain.BaseDirectory;
+            if (config != null)
+            {
+                appdir = config.AppBase;
+            }
+
+            return path.Replace("{APPPATH}", appdir);
         }
     }
 }
