@@ -3,100 +3,36 @@
 	<head>
 		<title>Corona</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
+	
+        <link href="./css/hal-/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="./js/jquery-1.9.1.js?3" language="javascript" type="text/javascript"></script>
+	<script src="./js/jquery-ui-1.10.3.custom.js?33" language="javascript" type="text/javascript"></script>
 
     <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
     <script src="./polaris.js?4" language="javascript"></script>
-
+    <script src="./hal.js?aa" language="javascript"></script>
     <script language="javascript">
 
-    function BuiltIn (halInstance){
-        this.self = this;
-        this.self.hal = halInstance;
-        this.self.cmd = {};
-        this.self.cmd.next = function () {
-            hal.runtime.view_index++
-            hal.gotoStep(hal.runtime.view_index);
-        }
-    }
-
-    var builder = {
-        text: function (def) {
-            para = document.createElement("p");
-            para.innerText = def['#text'];
-            para.setAttribute("id", def.name);
-            return para;
-        },
-        input: function (def) {
-            inp = document.createElement("input");
-            inp.setAttribute("type", "text");
-            inp.setAttribute("id", def.name);
-            return inp;
-
-        }
-    };
-    var hal = {}
-
-
-    function Hal(cfgInstance){
-        self = this;
-        self.cfg = cfgInstance;
-    };
-
-    function _ (text){
-        console.log(text);
-    }
-
-    Hal.prototype.init = function () {
-        _("init");
-        self.builtin = new BuiltIn(self);
-    }
-
-    Hal.prototype.processConfig = function (){
-        _("process config");
-        self.cfg.view_config.order = eval(self.cfg.view_config.order);
-        self.runtime = {};
-        self.runtime.view_index = 0;
-        self.cfg = cfg;
-    };
-
-    Hal.prototype.run = function (){
-        _("run");
-        self.processConfig();
-        self.runtime.view_index = 0;
-        self.gotoStep(self.runtime.view_index);
-    }
-
-    Hal.prototype.gotoStep = function (stepIndex) {
-        _("goto");
-        currentStep = self.cfg.steps[self.cfg.view_config.order[stepIndex]];
-        document.getElementById(self.cfg.view_config.elements.header).innerText = currentStep.header;
-        document.getElementById(self.cfg.view_config.elements.body).innerText = currentStep.body;
-        self.buildContent(currentStep);
-    }
-
-    Hal.prototype.buildContent = function (step) {
-        _("build content");
-        contentArea = document.getElementById(hal.cfg.view_config.elements.content);
-        contentArea.innerHTML = "";
-        for (ctlKey in step.content) {
-            ctl = step.content[ctlKey];
-            fn = eval("builder." + ctl.type);
-            _([ctl, fn]);
-            if (fn != null) {
-                var inst = fn(ctl);
-                contentArea.appendChild(inst);
-            }
-        }
-    }
-
-    document.onPolarisReady = function () {
-        window.polaris.xml.getJsonXmlDictionary ("{APPPATH}Html\\hal.config.xml", function (result){
-            cfg = JSON.parse(result);
-            hal = new Hal(cfg);            
-            hal.init();            
+        hal = {};
+        cfgstr = '';
+        
+        $(document).ready(function () {
+            cfg = JSON.parse(cfgstr);
+            hal = new Hal(cfg);
+            hal.init();
             hal.run();
+
         });
-    }
+
+        document.onPolarisReady = function () {
+            window.polaris.xml.getJsonXmlDictionary("{APPPATH}Html\\hal.config.xml", function (result) {
+                cfg = JSON.parse(result);
+                window.aaa = result
+                hal = new Hal(cfg);
+                hal.init();
+                hal.run();
+            });
+        }
 
     </script>
     

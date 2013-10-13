@@ -42,8 +42,8 @@
           actions="default">
       <header>Change Security Settings</header>
       <body>Specify how users will login to CRA Wiz and Fair Lending Wiz</body>
-      <content _key="name">
-        <text name="label" type="text">You can change how users will be able to login to CRA Wiz and Fair Lending Wiz. Please choose one of the option below</text>
+      <content _array="1">
+        <text name="label">You can change how users will be able to login to CRA Wiz and Fair Lending Wiz. Please choose one of the option below</text>
         <input
           name="SqlServerName"
           text="Sql Server:"
@@ -62,7 +62,7 @@
           actions="default">
       <header>Setup needs the system administrtor user name, password and the name of SQL Server</header>
       <body>Specify how users will login to CRA Wiz and Fair Lending Wiz</body>
-      <content _key="name">
+      <content _array="1">
         <input
           name="label"
           text="Sql Server:"
@@ -71,7 +71,7 @@
         <radio name="radio" _key="value">
           <option value="1" text="Windows Authentication"></option>
           <option value="2" text="">
-            <content _key="name" conditional="{selected==true}">
+            <content _array="1" conditional="{selected==true}">
               <input name="txtUsername" text="username"></input>
               <input name="txtPassword" text="password" isPassword="true"></input>
             </content>

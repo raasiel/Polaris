@@ -22,7 +22,7 @@ namespace Polaris.Api
             XmlDocument doc = new XmlDocument();
             doc.Load(filepath);
 
-            object root = FillDictionary ( doc.DocumentElement);
+            object root = GetObjectFromElement ( doc.DocumentElement);
 
             return JsonConvert.SerializeObject(root);
         }
@@ -59,13 +59,38 @@ namespace Polaris.Api
             return false;
         }
 
-        private object FillDictionary ( XmlElement xel)
+        private bool IsArray(XmlElement xel)
         {
-            Dictionary<string, object> dicReturn = new Dictionary<string, object>();
-
-            bool isDictionary = IsDictionary(xel);
-            if (isDictionary)
+            if ( xel.GetAttribute("_array")=="1")
             {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private object GetObjectFromElement ( XmlElement xel)
+        {
+            if (IsArray (xel)==true)
+            {
+                List<object> list = new List<object>();
+                foreach (XmlElement xelChild in xel.ChildNodes)
+                {
+                    object obj = GetObjectFromElement (xelChild);
+                    if (obj is Dictionary<string, object>)
+                    {
+                        Dictionary<string, object> dic = obj as Dictionary<string, object>;
+                        dic["_type"] = xelChild.Name;
+                    }
+                    list.Add(obj);
+                }
+                return list.ToArray();
+            }            
+            else if (IsDictionary(xel)==true)
+            {
+                Dictionary<string, object> dicReturn =  new Dictionary<string, object>();
                 bool isExplicit = false;
                 string explicitKey = xel.GetAttribute("_key");
                 if (explicitKey.Length > 0)
@@ -76,7 +101,7 @@ namespace Polaris.Api
                 {
                     foreach (XmlElement xelChild in xel.ChildNodes)
                     {
-                        Dictionary<string, object> dicChild = FillDictionary(xelChild) as Dictionary<string, object>;
+                        Dictionary<string, object> dicChild = GetObjectFromElement(xelChild) as Dictionary<string, object>;
                         string propName = dicChild[explicitKey] as string;
                         dicReturn[propName] = dicChild;
                     }
@@ -100,11 +125,10 @@ namespace Polaris.Api
                         XmlElement xelChild = xndChild as XmlElement;
                         if (xelChild != null)
                         {
-                            dicReturn[xelChild.Name] = FillDictionary(xelChild);
+                            dicReturn[xelChild.Name] = GetObjectFromElement(xelChild);
                         }
                         else
                         {
-                            var a = 1;
                             if ( xndChild.GetType().Equals ( typeof(XmlText)))
                             {
                                 dicReturn[xndChild.Name] = xndChild.InnerText;
