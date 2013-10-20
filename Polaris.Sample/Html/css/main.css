@@ -1,26 +1,39 @@
 ﻿body {
-    font-family: Calibri, Tahoma, Verdana;
+    font-size:9pt;
+    font-family:Tahoma;
+    text-align: left;
     color: #0768A9;
 }
 
-.button {
+h2 {
+    font-family:Calibri;
+    text-align: left;
+}
+
+.action {
     color: #0768A9;
 }
 
 .footer {
-    font-family: Calibri, Tahoma, Verdana;
-    font-size: small;
-    color: #808080;
-}
-
-.textBox {
-    font-family: Calibri, Tahoma, Verdana;
-    font-size: small;
-    color: #0768A9;
+    font-size:9pt;
+    font-family:Tahoma;
+    text-align: left;
 }
 
 .subtext {
-    font-size:small;
-    font-family: Calibri, Tahoma, Verdana;
-    text-align:justify;
+    font-size:9pt;
+    font-family:Tahoma;
+    text-align: left;
+}
+
+.hal {
+    font-size:9pt;
+    font-family:Tahoma;
+    text-align: left;
+}
+
+.halui {
+    font-size:9pt;
+    font-family:Tahoma;
+    text-align: left;
 }

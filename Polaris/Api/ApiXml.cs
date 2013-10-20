@@ -15,6 +15,13 @@ namespace Polaris.Api
             get { return "xml"; }
         }
 
+        private Context _context = null;
+        public bool Initialize(Context context)
+        {
+            _context = context;
+            return true;
+        }
+
         [ApiCall(false)]
         public string getJsonXmlDictionary(string path)
         {
@@ -75,6 +82,7 @@ namespace Polaris.Api
         {
             if (IsArray (xel)==true)
             {
+                Dictionary<string, object> dicArr = new Dictionary<string, object>();
                 List<object> list = new List<object>();
                 foreach (XmlElement xelChild in xel.ChildNodes)
                 {
@@ -86,7 +94,16 @@ namespace Polaris.Api
                     }
                     list.Add(obj);
                 }
-                return list.ToArray();
+                foreach (XmlAttribute attr in xel.Attributes)
+                {
+                    if (!attr.Name.StartsWith("_"))
+                    {
+                        dicArr[attr.Name] = attr.Value;
+                    }
+                }
+
+                dicArr.Add("items", list.ToArray());
+                return dicArr;
             }            
             else if (IsDictionary(xel)==true)
             {

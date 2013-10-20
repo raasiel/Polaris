@@ -18,6 +18,7 @@ namespace Polaris
             foreach (Type typ in context.Config.ApiModules)
             {
                 IApiModule module = Activator.CreateInstance(typ) as IApiModule;
+                module.Initialize(context);
                 _dicModules.Add(module.ModuleName, module);
             }
 

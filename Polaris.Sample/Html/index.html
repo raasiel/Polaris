@@ -2,27 +2,30 @@
 <html debug="true">
 	<head>
 		<title>Corona</title>
-    <link rel="stylesheet" type="text/css" href="./css/main.css" />
-	
+        <link rel="stylesheet" type="text/css" href="./css/main.css" />        	
         <link href="./css/hal-/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-	<script src="./js/jquery-1.9.1.js?3" language="javascript" type="text/javascript"></script>
-	<script src="./js/jquery-ui-1.10.3.custom.js?33" language="javascript" type="text/javascript"></script>
+	
+        <script src="./js/jquery-1.9.1.js?3" language="javascript" type="text/javascript"></script>
+        <script src="./js/jquery-ui-1.10.3.custom.js?33" language="javascript" type="text/javascript"></script>
+        <script src="./js/jquery.tmpl.js" language="javascript" type="text/javascript"></script>
 
-    <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
-    <script src="./polaris.js?4" language="javascript"></script>
-    <script src="./hal.js?aa" language="javascript"></script>
-    <script language="javascript">
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+        
+        <script src="./polaris.js?4" language="javascript"></script>
+        <script src="./hal.js?aa" language="javascript"></script>
+        <script language="javascript">
 
         hal = {};
         cfgstr = '';
-        
+    
+            /*
         $(document).ready(function () {
             cfg = JSON.parse(cfgstr);
             hal = new Hal(cfg);
             hal.init();
             hal.run();
 
-        });
+        });*/
 
         document.onPolarisReady = function () {
             window.polaris.xml.getJsonXmlDictionary("{APPPATH}Html\\hal.config.xml", function (result) {
@@ -56,26 +59,33 @@
       </tr>
     </table>
     <!--Body-->
-
+    
     <div id="divBody">
-    <table style="width: 100%; height: 325px">
+    <table style="width: 100%;">
       <tr style="vertical-align: top">
-        <td style="width: 195px">&nbsp;</td>
+        <td>&nbsp;</td>
         <td>
           <h2 id="h2header"></h2>
-          <br />
-          <div class="subtext" id="divBodytext">
+            <div class="subtext" id="divBodytext">
           </div>
+            <br />
         </td>
       </tr>
-    </table>
-    <div id="divContent">
-    </div>
+      <tr style="vertical-align: top">
+        <td>&nbsp;</td>
+        <td>
+            <div id="divContent">
+            </div>
+        </td>
+      </tr>
 
+    </table>
+
+        <br />
     <div id="divNav"></div>
       
     </div>
-    
+    <br />
     <!--Footer-->
     <table style="width: 100%">
       <tr>

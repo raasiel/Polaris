@@ -2,9 +2,9 @@
 <hal>
   <action_config>
     <actions _key="name">
-      <action name="next" text="Next" cmd="prebuit.cmd.next"/>
-      <action name="prev" text="previous" cmd="prebuit.cmd.prev"/>
-      <action name="cancel" text="Cancel" cmd="prebuit.cmd.exit_with_warning"/>
+      <action name="next" text="Next" cmd="prebuilt.cmd.next"/>
+      <action name="prev" text="Previous" cmd="prebuilt.cmd.prev"/>
+      <action name="cancel" text="Cancel" cmd="prebuilt.cmd.exit_with_warning"/>
       <action name="finish" text="Finish" cmd="client.onDo"/>
     </actions>
     <sets _key="name">
@@ -46,12 +46,10 @@
         <text name="label">You can change how users will be able to login to CRA Wiz and Fair Lending Wiz. Please choose one of the option below</text>
         <input
           name="SqlServerName"
-          text="Sql Server:"
-          type="input"
+          text="Sql Server"
           model="client.model.sql_server"
-          ></input>
-
-        <radio _key="value" name="radio" type="radio" model="client.model.login_mode">
+          >Sql Server</input>
+        <radio _array="1" text="Authentication Mode" >
           <option value="1" text="Wiz Login Mode(Default)"/>
           <option value="2" text="Active Directory Login Mode"/>
         </radio>
@@ -68,9 +66,9 @@
           text="Sql Server:"
           model="client.model.sql_server"
           ></input>
-        <radio name="radio" _key="value">
+        <radio name="radio" _array="1">
           <option value="1" text="Windows Authentication"></option>
-          <option value="2" text="">
+          <option value="2" text="Sql Authentication">
             <content _array="1" conditional="{selected==true}">
               <input name="txtUsername" text="username"></input>
               <input name="txtPassword" text="password" isPassword="true"></input>

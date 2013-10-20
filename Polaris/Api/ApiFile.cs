@@ -13,6 +13,13 @@ namespace Polaris.Api
             get { return "file"; }
         }
 
+        private Context _context = null;
+        public bool Initialize(Context context)
+        {
+            _context = context;
+            return true;
+        }
+
         [ApiCall(false)]
         public bool isExists(string filename)
         {

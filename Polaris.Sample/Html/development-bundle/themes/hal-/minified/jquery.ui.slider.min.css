@@ -1,0 +1,5 @@
+/*! jQuery UI - v1.10.3 - 2013-10-10
+* http://jqueryui.com
+* Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
+
+hal- .ui-slider{position:relative;text-align:left}hal- .ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.2em;height:1.2em;cursor:default}hal- .ui-slider .ui-slider-range{position:absolute;z-index:1;font-size:.7em;display:block;border:0;background-position:0 0}hal- .ui-slider.ui-state-disabled .ui-slider-handle,hal- .ui-slider.ui-state-disabled .ui-slider-range{filter:inherit}hal- .ui-slider-horizontal{height:.8em}hal- .ui-slider-horizontal .ui-slider-handle{top:-.3em;margin-left:-.6em}hal- .ui-slider-horizontal .ui-slider-range{top:0;height:100%}hal- .ui-slider-horizontal .ui-slider-range-min{left:0}hal- .ui-slider-horizontal .ui-slider-range-max{right:0}hal- .ui-slider-vertical{width:.8em;height:100px}hal- .ui-slider-vertical .ui-slider-handle{left:-.3em;margin-left:0;margin-bottom:-.6em}hal- .ui-slider-vertical .ui-slider-range{left:0;width:100%}hal- .ui-slider-vertical .ui-slider-range-min{bottom:0}hal- .ui-slider-vertical .ui-slider-range-max{top:0}

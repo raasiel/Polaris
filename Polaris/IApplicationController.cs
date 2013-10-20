@@ -10,5 +10,6 @@ namespace Polaris
     {
         bool Initialize(Context context);
         void Run();
+        void Quit();
     }
 }

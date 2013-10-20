@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Api\ApiCallAttribute.cs" />
     <Compile Include="Api\ApiFile.cs" />
+    <Compile Include="Api\ApiSystem.cs" />
     <Compile Include="Api\ApiXml.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Context.cs" />

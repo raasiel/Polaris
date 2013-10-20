@@ -7,6 +7,7 @@ namespace Polaris
 {
     interface  IApiModule
     {
+        bool Initialize(Context context);
         string ModuleName { get; }
     }
 }
