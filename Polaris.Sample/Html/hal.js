@@ -74,45 +74,91 @@ function Builder(halInstance) {
     _(["Builder constructor",self]);
     self.maxId = 0;
     self.hal = halInstance;
+    self.defs = {};
     self.templates = {
         text:  '<p class="halui text" id="${id}">${text}</p>',
-        input: '<span class="hal input">${text}</span><input class="halui input" id="${id}"></input>',
+        input: '<span class="hal input">${text}</span><input class="halui input" id="${id}"></input><br/>',
         radio: '<div class="halui radio" id="${id}"><p>${text}</p></div>',
         option: '<div><input class="halui input" id="${id}" type="radio" value="${value}" name="group1">${text}</input></br><div>',
         action: '<input class="hal action" type="button" value="${text}" onclick="javascript:hal.${cmd}()"></input>'
     };
 
     
-    self.createWidget = function (def) {
+    
+    self.createWidget = function (def, parent) {
         _(["Create widget", def, container]);
         // Make sure UI element has an id.
         if (def.id == null) {
             self.maxId++;
             def.id = "control_" + self.maxId.toString();
+            self.defs[def.id] = def;
+        }
+
+        if (parent != null) {
+            def.parent = parent;
         }
 
         var tmpl = self.templates[def._type];
         var tempContainer = null;
         var output = null;
+
+        var items = null;
         if (def.items != null) {
-            tempContainer = $("<div/>");
-            for (key in def.items) {
-                childItem = def.items[key];
-                childWidget = self.createWidget(childItem);
-                childWidget.appendTo(tempContainer);
-            }
+            items = def.items;
         }
         if (def.content != null) {
             if (def.content.items != null){
-                tempContainer = $("<div/>");
-                for (key in def.content.items) {
-                    childItem = def.content.items[key];
-                    childWidget = self.createWidget(childItem);
-                    childWidget.appendTo(tempContainer);
+                items = def.content.items;
+            }
+        }
+
+        var postExecute = null;
+
+        if (items!= null){
+            tempContainer = $("<div/>");
+            for (key in items) {
+                childItem = items[key];
+                childWidget = self.createWidget(childItem,def);
+                childWidget.appendTo(tempContainer);
+                _(["child item", childItem]);
+                if (def._type == "option") {
+                    try{
+                        postExecute = function () {
+                            for (key2 in parent.items) {
+                                sibling = parent.items[key2];
+                                $("#" + sibling.id).click(function () { 
+                                    _(["clicked", def, sibling]);
+                                    if ($("#" + def.id)[0].checked == true) {
+                                        $("#parent_" + def.id).fadeIn();
+                                    } else {
+                                        $("#parent_" + def.id).fadeOut();
+                                    }
+                                });
+                            }
+                        };
+                        def.postExecute = postExecute;
+                        _(["set postex",def])
+                    } catch(er){alert(er.message)}
                 }
             }
         }
 
+        output = $.tmpl(tmpl, def);
+        if (tempContainer != null) {
+            _(["temp container", tempContainer]);
+            tempContainer.attr("id", "parent_" + def.id);
+            tempContainer.appendTo(output);
+
+            if (def.content != null) {
+                if (def.content.conditional != null) {
+                   
+                }
+            }
+        }
+
+        return output;
+
+        /*
         output = $.tmpl(tmpl, def);
         if (tempContainer != null) {
             _(["temp container", tempContainer]);
@@ -121,6 +167,7 @@ function Builder(halInstance) {
         }
         
         return output;
+        */
     }
     /*
         fn = new function (childDef, childContainer) {
@@ -213,6 +260,15 @@ function Hal(cfgInstance) {
                 }               
                 widgetUI = self.builder.createWidget(def);
                 widgetUI.appendTo(container);
+            }
+        }
+
+        for (key in self.builder.defs) {
+            def = self.builder.defs[key]
+            if (def.postExecute != null) {
+                _(["found postex", def])
+                def.postExecute();
+                def.postExecute = null;
             }
         }
     };
