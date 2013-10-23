@@ -33,9 +33,13 @@
       <header>Welcome to CRAWiz 6.9 Installation</header>
       <body>
         This program will install CRA Wiz and Fair Landing Wiz 6.8 on your computer. it's highly recomend that you exits all windows program before continuing.
-        If you need assistance press F1 at any time if you want to view installation instructions.
-        Press next to continue.
       </body>
+      <content _array="1">
+        <text name="lbl">
+          If you need assistance press F1 at any time if you want to view installation instructions.
+          Press next to continue.
+        </text>
+      </content>
     </step>
     <step name="change_security_settings"
           renderer="prebuilt.view.flow_downward"
@@ -47,9 +51,9 @@
         <input
           name="SqlServerName"
           text="Sql Server"
-          model="client.model.sql_server"
+          model="sql_server"
           >Sql Server</input>
-        <radio _array="1" text="Authentication Mode" >
+        <radio _array="1" text="Authentication Mode" model="login_mode" >
           <option value="1" text="Wiz Login Mode(Default)"/>
           <option value="2" text="Active Directory Login Mode"/>
         </radio>
@@ -58,20 +62,21 @@
     <step name="server_information"
           renderer="prebuilt.view.flow_downward"
           actions="default">
-      <header>Setup needs the system administrtor user name, password and the name of SQL Server</header>
-      <body>Specify how users will login to CRA Wiz and Fair Lending Wiz</body>
+      <header>Server Information</header>
+      <body>Setup needs the system administrtor user name, password and the name of SQL Server</body>
       <content _array="1">
+        <text name="lbl">Specify how users will login to CRA Wiz and Fair Lending Wiz</text>
         <input
           name="label"
           text="Sql Server:"
-          model="client.model.sql_server"
+          model="sql_server"
           ></input>
-        <radio name="radio" _array="1">
+        <radio name="radio" _array="1" model="sql_auth">
           <option value="1" text="Windows Authentication"></option>
           <option value="2" text="Sql Authentication">
             <content _array="1" conditional="{selected==true}">
-              <input name="txtUsername" text="username"></input>
-              <input name="txtPassword" text="password" isPassword="true"></input>
+              <input name="txtUsername" text="Username" model="sql_username"></input>
+              <input name="txtPassword" text="Password" model="sql_password" isPassword="true"></input>
             </content>
           </option>
         </radio>

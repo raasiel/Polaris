@@ -68,6 +68,7 @@ function Prebuilt(halInstance) {
  */
 
 
+
 function Builder(halInstance) {
     
     var self = this;
@@ -75,17 +76,65 @@ function Builder(halInstance) {
     self.maxId = 0;
     self.hal = halInstance;
     self.defs = {};
+    self.execQueue = [];
     self.templates = {
         text:  '<p class="halui text" id="${id}">${text}</p>',
-        input: '<span class="hal input">${text}</span><input class="halui input" id="${id}"></input><br/>',
+        input: '<table><tr><td style="width:100px"><span class="hal input">${text}</span></td><td style="width:100px"><input class="halui input" id="${id}"></input></td></tr></table>',
         radio: '<div class="halui radio" id="${id}"><p>${text}</p></div>',
         option: '<div><input class="halui input" id="${id}" type="radio" value="${value}" name="group1">${text}</input></br><div>',
         action: '<input class="hal action" type="button" value="${text}" onclick="javascript:hal.${cmd}()"></input>'
     };
 
+    self.onBuildComplete = function () {
+        while (self.execQueue.length > 0) {
+            var fn = self.execQueue.pop();
+            fn();
+        }
+    }
     
-    
-    self.createWidget = function (def, parent) {
+    self.updateModelFromStep = function () {
+        _(["update model from step"])
+        var ctls = $(".halui");
+        _(["ctls",ctls])
+        for (index in ctls) {
+            var ctl = ctls[index];
+            _(["ctl",ctl])
+            var def = self.defs[ctl.id];
+            _(["def", def])
+            if (def != null) {
+                if (def.model != null) {
+                    var model = self.hal.cfg.client.model;
+                    if (def._type == "input") {
+                        model[def.model] = $(ctl).val();
+                    }
+                }
+            }
+        }
+    }
+
+    self.updateModel = function (def) {
+        _(["In model", def]);
+        if (def.model != null) {
+            model = self.hal.cfg.client.model;
+            var modelValue = null;
+            try {
+                modelValue = model[def.model];
+            } catch (errMdl) {
+                modelValue = null;
+            }
+            _(["model_value", modelValue]);
+            if (modelValue == null) {
+                model[def.model] = null;
+            } else {
+                if (def._type == "input") {
+                    $("#" + def.id).val(modelValue);
+                }
+            }
+        }
+
+    }
+
+    self.createWidget = function (def, parent, indent) {
         _(["Create widget", def, container]);
         // Make sure UI element has an id.
         if (def.id == null) {
@@ -96,6 +145,10 @@ function Builder(halInstance) {
 
         if (parent != null) {
             def.parent = parent;
+        }
+
+        if (indent == null) {
+            indent = 0;
         }
 
         var tmpl = self.templates[def._type];
@@ -118,77 +171,51 @@ function Builder(halInstance) {
             tempContainer = $("<div/>");
             for (key in items) {
                 childItem = items[key];
-                childWidget = self.createWidget(childItem,def);
+                childWidget = self.createWidget(childItem, def, indent+1);
                 childWidget.appendTo(tempContainer);
                 _(["child item", childItem]);
                 if (def._type == "option") {
-                    try{
-                        postExecute = function () {
-                            for (key2 in parent.items) {
-                                sibling = parent.items[key2];
-                                $("#" + sibling.id).click(function () { 
-                                    _(["clicked", def, sibling]);
-                                    if ($("#" + def.id)[0].checked == true) {
-                                        $("#parent_" + def.id).fadeIn();
-                                    } else {
-                                        $("#parent_" + def.id).fadeOut();
-                                    }
-                                });
-                            }
-                        };
-                        def.postExecute = postExecute;
-                        _(["set postex",def])
-                    } catch(er){alert(er.message)}
+                    postExecute = function () {
+
+                        $("#parent_" + def.id).hide();
+                        // bind to click 
+                        for (key2 in parent.items) {
+                            sibling = parent.items[key2];
+                            $("#" + sibling.id).click(function () { 
+                                _(["clicked", def, sibling]);
+                                if ($("#" + def.id)[0].checked == true) {
+                                    $("#parent_" + def.id).fadeIn();
+                                } else {
+                                    $("#parent_" + def.id).fadeOut();
+                                }
+                            });
+                        }
+                    };
+                    self.execQueue.push(postExecute);
+                    _(["set postExecute",def])
                 }
             }
         }
 
+        var fn_model = function () { self.updateModel(def); }
+        self.execQueue.push(fn_model);
+
         output = $.tmpl(tmpl, def);
         if (tempContainer != null) {
-            _(["temp container", tempContainer]);
+            _(["temp container", tempContainer]);            
             tempContainer.attr("id", "parent_" + def.id);
+            try {
+                indentStr = (indent * 20).toString() + "px";
+                tempContainer.css("padding-left", indentStr);
+                tempContainer.css("padding-top", "5px");
+            } catch (cssErr) { alert(cssErr);}
             tempContainer.appendTo(output);
-
-            if (def.content != null) {
-                if (def.content.conditional != null) {
-                   
-                }
-            }
         }
 
         return output;
-
-        /*
-        output = $.tmpl(tmpl, def);
-        if (tempContainer != null) {
-            _(["temp container", tempContainer]);
-            tempContainer.attr("id","parent_" + def.id);
-            tempContainer.appendTo(output);
-        }
-        
-        return output;
-        */
     }
-    /*
-        fn = new function (childDef, childContainer) {
-            return "<p>ChildDef</p>";
-        }
-        if (def.items != null) {
-            for (key in def.items) {
-                childItem = def.items[key];
-                if (childItem.content != null) {
-                    /*
-                    for (childKey in childItem.content.items) {
-                        smallItem = childItem.content.items[childKey];                       
-                        smallItem['html'] = function () { return "AAA"; };
-                        _(smallItem);
-                    }
-                    childItem.html = function () { return "AAA"; };
-                    _(childItem);
-                }
-            }
-        }*/
 }
+
 
 var hal = {};
 
@@ -263,20 +290,14 @@ function Hal(cfgInstance) {
             }
         }
 
-        for (key in self.builder.defs) {
-            def = self.builder.defs[key]
-            if (def.postExecute != null) {
-                _(["found postex", def])
-                def.postExecute();
-                def.postExecute = null;
-            }
-        }
+        self.builder.onBuildComplete();
     };
 
     self.buildUI = function (step) {
         _(["Build UI",step]);
         try {
             container = $("#" + hal.cfg.view_config.elements.content);
+            self.builder.updateModelFromStep();
             container.html('');
             if (step.content != null) {
                 if (step.content.items != null) {
@@ -287,13 +308,4 @@ function Hal(cfgInstance) {
             alert(e.message);
         }
     };
-
 };
-
-
-
-
-
-
-
-

@@ -10,7 +10,7 @@
         <script src="./js/jquery.tmpl.js" language="javascript" type="text/javascript"></script>
 
         <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
-        
+                
         <script src="./polaris.js?4" language="javascript"></script>
         <script src="./hal.js?aa" language="javascript"></script>
         <script language="javascript">
@@ -27,10 +27,12 @@
 
         });*/
 
+        
         document.onPolarisReady = function () {
-            window.polaris.xml.getJsonXmlDictionary("{APPPATH}Html\\hal.config.xml", function (result) {
-                cfg = JSON.parse(result);
-                window.aaa = result
+            window.polaris.host.setTitle("CRAWiz 6.9 Installation Wizard");
+            //window.polaris.host.setSize(700, 550, true);
+            window.polaris.xml.getJsonXmlDictionary("{APPPATH}Html\\hal.config.xml", function (result) {                
+                cfg = JSON.parse(result);                
                 hal = new Hal(cfg);
                 hal.init();
                 hal.run();
@@ -66,7 +68,7 @@
         <td>&nbsp;</td>
         <td>
           <h2 id="h2header"></h2>
-            <div class="subtext" id="divBodytext">
+            <div class="subtext" id="divBodytext" style="width:600px;height:30px;">
           </div>
             <br />
         </td>
@@ -74,15 +76,16 @@
       <tr style="vertical-align: top">
         <td>&nbsp;</td>
         <td>
-            <div id="divContent">
+            <div id="divContent" style="overflow:auto;overflow-style:scrollbar;width:600px;height:250px;">
             </div>
         </td>
       </tr>
 
     </table>
+        
 
         <br />
-    <div id="divNav"></div>
+    <div id="divNav" style="float:right"></div>
       
     </div>
     <br />
