@@ -1,0 +1,32 @@
+admin_db_pwd = ~PCi123#
+admin_db_user = sa
+admin_email = contact@bank.com
+administrator_email_id = administrator@wk.com
+db_pwd = password
+db_server = (local)
+db_user = BBEUser
+security_key = wkfs130turner02453
+dem_client_url = http://localhost/CRA.PCiServer.DEM.Web/ViewPages/Login.aspx
+geo_2000_datapath = \\10.158.3.66\geocoder\Address-2012-Q3-Census-2010
+geo_2010_datapath = \\10.158.3.66\geocoder\Address-2012-Q3-Census-2010
+geo_Map_Path = C:\Map Data
+iis_app_pool_pwd = ~PCi123#
+iis_app_pool_user = administrator
+iis_host = localhost
+menu_report_server_url = http://ws-vsvr-web-80:7030
+smtp_server = localhost
+dir_web_admin = C:\inetpub\BBEDeployment\BBEAdmin
+dir_web_client = C:\inetpub\BBEDeployment\BBEClient
+cd_attachment_temp_store_location = c:\FileUploaded\
+assesment_area_folder_name = bbe
+cd_attachment_max_file_size = 5
+cd_attachment_max_no_of_file = 5
+sqlCommandTimeOut = 180
+action_Year = 2014
+census_Year = 2010
+max_count_export = 20
+
+# The listed settings will required for new installation
+other_type_template_lar = wiz_00041
+other_type_email_from = test@wk.com
+other_type_report_server_url = http://ws-vsvr-web-80:7030

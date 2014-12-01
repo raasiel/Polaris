@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<steps>
+    <step id="1">
+		<execute_sql_script_for_new_installation sourceLocation="[@build_location]\DB\DatabaseNew" connection_key="bbe_server_sa_connection"/>
+	</step>
+    <step id="2">
+        <execute_sql_script_in_order listfile="[@build_location]\DB\DBOrder-BBE-70.00.00.txt"  connection_key="bbe_server_sa_connection"/>
+    </step>
+    <step id="3">
+        <execute_db_post_action_new connection_key="bbe_server_sa_connection" />
+    </step>
+    <step id="4">
+        <execute_sql_script_in_order listfile="[@build_location]\DB\DBOrder-BBE-70.00.00.txt"  connection_key="bbe_server_connection"/>
+    </step>
+    <step id="5">
+        <execute_db_post_action_update connection_key="bbe_server_connection" />
+    </step>
+</steps>

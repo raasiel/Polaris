@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3515A5B5-056B-4CA3-84C8-143766B9D770}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Deployment</RootNamespace>
+    <AssemblyName>Deployment</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PCiSecurity">
+      <HintPath>bin\Debug\lib\PCiSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="PCiServer.DEM.Cryptography">
+      <HintPath>bin\Debug\lib\PCiServer.DEM.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BBEFunctions.cs" />
+    <Compile Include="Core.cs" />
+    <Compile Include="Functions.cs" />
+    <Compile Include="IISFunctions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\lib\bbefunctions.ps1" />
+    <None Include="bin\Debug\lib\core.ps1" />
+    <None Include="bin\Debug\lib\functions.ps1" />
+    <None Include="bin\Debug\products\bbe\tools\OrderDBScript.log" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\lib\Interop.ActiveDs.dll" />
+    <Content Include="bin\Debug\lib\Interop.Scripting.dll" />
+    <Content Include="bin\Debug\lib\PCiSecurity.dll" />
+    <Content Include="bin\Debug\lib\PCiServer.DEM.Cryptography.dll" />
+    <Content Include="bin\Debug\products\bbe\config\config.template.xml" />
+    <Content Include="bin\Debug\products\bbe\config\dev.txt" />
+    <Content Include="bin\Debug\products\bbe\config\dev2003.txt" />
+    <Content Include="bin\Debug\products\bbe\config\offdev.txt" />
+    <Content Include="bin\Debug\products\bbe\config\offdev.xml" />
+    <Content Include="bin\Debug\products\bbe\config\PBdev.txt" />
+    <Content Include="bin\Debug\products\bbe\config\qa2003.txt" />
+    <Content Include="bin\Debug\products\bbe\config\qa2008.txt" />
+    <Content Include="bin\Debug\products\bbe\steps\db.xml" />
+    <Content Include="bin\Debug\products\bbe\steps\web.xml" />
+    <Content Include="bin\Debug\products\bbe\tools\OrderingBBEScript.exe" />
+    <Content Include="Sample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

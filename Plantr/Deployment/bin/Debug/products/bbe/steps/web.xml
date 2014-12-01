@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<steps>
+    <step id="1">
+        <CreateUNCVirtualDirectory siteName = '[@iis_site_name]' vDirName = "[@iis_vir_dir_name_admin]" uncPath = "[@dir_web_admin]" uncUserName = "[@iis_app_pool_username]" uncPassword = "[@iis_app_pool_password]" />
+    </step>
+    <step id="2">
+        <CreateUNCVirtualDirectory siteName = '[@iis_site_name]' vDirName = "[@iis_vir_dir_name_client]" uncPath = "[@dir_web_client]" uncUserName = "[@iis_app_pool_username]" uncPassword = "[@iis_app_pool_password]" />
+    </step>
+    <step id="3">
+        <iis_action action="stop" host="[@iis_host]"/>
+    </step>
+    <step id="4">
+        <overwrite_files src="[@build_location]\Web\Admin" dest="[@dir_web_admin]"/>
+    </step>
+    <step id="5">
+        <overwrite_files src="[@build_location]\Web\Client" dest="[@dir_web_client]"/>
+    </step>
+    <step id="6">
+        <update_appsettings section_name="appsettings_changes_webadmin" web_config="[@dir_web_admin]\Web.config" />
+    </step>
+    <step id="7">
+        <update_appsettings section_name="appsettings_changes_webadmin_update" web_config="[@dir_web_admin]\Web.config" />
+    </step>
+    <step id="8">
+        <update_appsettings section_name="appsettings_changes_webclient" web_config="[@dir_web_client]\Web.config" />
+    </step>
+    <step id="9">
+        <ensure_xml_in_webconfig section_name="json_section_webclient" web_config="[@dir_web_client]\Web.config" />
+    </step>
+    <step id="10">
+        <ensure_xml_in_webconfig section_name="json_section_webadmin" web_config="[@dir_web_admin]\Web.config" />
+    </step>
+    <step id="11">
+        <ensure_xml_nonunique_nodes
+		    section_name="plarform_conf_changes"
+		    web_config="[@dir_web_client]\PlatformServices.config"
+		    parent_element_xpath="/configuration/platform/utility_functions"
+		    element_check_expression="name"
+	    />
+    </step>
+    <step id="12">
+        <update_appsettings section_name="appsettings_changes_webadmin_new" web_config="[@dir_web_admin]\Web.config" />
+    </step>
+    <step id="13">
+        <update_appsettings section_name="appsettings_changes_webclient_new" web_config="[@dir_web_client]\Web.config" />
+    </step>
+    <step id="14">
+        <UpdateGeocodeConfig section_name="geosettings_changes_webclient" geo_config="[@dir_web_client]\GeocoderService.config" />
+    </step>
+    <step id="15">
+        <ensure_xml_in_webconfig section_name="json_section_webclient_platform" web_config="[@dir_web_client]\PlatformServices.config" />
+    </step>
+    <step id="16">
+        <ensure_xml_nonunique_nodes_extended
+		    section_name="system_web_update"
+		    web_config="[@dir_web_client]\Web.config"
+		    parent_element_xpath="/configuration/system.web/httpModules"
+		    element_check_expression="system.web/httpModules/add[{@}name]"
+	    />
+    </step>
+    <step id="17">
+        <ensure_xml_nonunique_nodes_extended
+		    section_name="system_web_update"
+		    web_config="[@dir_web_client]\Web.config"
+		    parent_element_xpath="/configuration/system.webServer/modules"
+		    element_check_expression="system.webServer/modules/add[{@}name]"
+	    />
+    </step>
+    <step id="18">
+        <overwrite_file src="[@dir_web_admin]\Web.config" dest="[@dir_web_admin]\bin\EmailScheduleProcessor.exe.config"/>
+    </step>
+    <step id="19">
+        <CreateTaskScheduler program_to_run="[@dir_web_admin]\bin\EmailScheduleProcessor.exe" start_time="21:00"/>
+    </step>
+    <step id="20">
+        <iis_action action="start" host="[@iis_host]"/>
+    </step>
+</steps>

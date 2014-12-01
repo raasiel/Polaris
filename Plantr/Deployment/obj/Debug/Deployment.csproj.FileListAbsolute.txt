@@ -1,0 +1,11 @@
+D:\Projects\Deployment\Deployment\bin\Debug\Deployment.exe.config
+D:\Projects\Deployment\Deployment\bin\Debug\Sample.xml
+D:\Projects\Deployment\Deployment\bin\Debug\Deployment.exe
+D:\Projects\Deployment\Deployment\bin\Debug\Deployment.pdb
+D:\Projects\Deployment\Deployment\obj\Debug\Deployment.csprojResolveAssemblyReference.cache
+D:\Projects\Deployment\Deployment\obj\Debug\Deployment.exe
+D:\Projects\Deployment\Deployment\obj\Debug\Deployment.pdb
+D:\Projects\Deployment\Deployment\bin\Debug\PCiSecurity.dll
+D:\Projects\Deployment\Deployment\bin\Debug\PCiServer.DEM.Cryptography.dll
+D:\Projects\Deployment\Deployment\bin\Debug\Interop.Scripting.dll
+D:\Projects\Deployment\Deployment\bin\Debug\Interop.ActiveDs.dll

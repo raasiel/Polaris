@@ -1,0 +1,32 @@
+admin_db_pwd = ONirban123@#
+admin_db_user = arefin
+admin_email = contact@bank.com
+administrator_email_id = administrator@wk.com
+db_pwd = password
+db_server = (local)
+db_user = BBEUser
+security_key = W2*jHl;oU*)su%+=
+dem_client_url = http://localhost/BBE.Client/ViewPages/Login.aspx
+geo_2000_datapath = C:\Census2000GeoData
+geo_2010_datapath = C:\Census2010GeoData
+geo_Map_Path = C:\Map Data
+iis_app_pool_pwd = onirban123@
+iis_app_pool_user = administrator
+iis_host = localhost
+menu_report_server_url = http://ws-vsvr-web-80:7030
+smtp_server = localhost
+dir_web_admin = C:\CRA.PCiServer.Dem.Web.Admin
+dir_web_client = C:\CRA.PCiServer.Dem.Web
+cd_attachment_temp_store_location = c:\FileUploaded\
+assesment_area_folder_name = bbe
+cd_attachment_max_file_size = 5
+cd_attachment_max_no_of_file = 5
+sqlCommandTimeOut = 180
+action_Year = 2014
+census_Year = 2010
+max_count_export = 20
+
+# The listed settings will required for new installation
+other_type_template_lar = wiz_00020
+other_type_email_from = test@wk.com
+other_type_report_server_url = http://ws-vsvr-web-80:7030

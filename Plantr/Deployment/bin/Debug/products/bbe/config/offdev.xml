@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <variable>
+    <iis_host>localhost</iis_host>
+    <build_location>D:\Projects\Deployment\Deployment\bin\Debug</build_location>
+    <bbe_server_connection>
+      <datasource>(local)</datasource>
+      <username>BBEUser</username>
+      <password>password</password>
+      <database>DEMAdmin</database>
+    </bbe_server_connection>
+    <bbe_server_sa_connection>
+      <datasource>(local)</datasource>
+      <username>arefin</username>
+      <password>ONirban123@#</password>
+      <database>master</database>
+    </bbe_server_sa_connection>
+    <iis_vir_dir_name_admin>BBEAdmin</iis_vir_dir_name_admin>
+    <iis_vir_dir_name_client>BBEClient</iis_vir_dir_name_client>
+    <iis_app_pool_username>administrator</iis_app_pool_username>
+    <iis_app_pool_password>onirban123@</iis_app_pool_password>
+    <iis_site_name>Default Web Site</iis_site_name>
+    <dir_web_admin>C:\CRA.PCiServer.Dem.Web.Admin</dir_web_admin>
+    <dir_web_client>C:\CRA.PCiServer.Dem.Web</dir_web_client>
+    <json_section_webclient type="xml">
+      <system.web.extensions>
+        <scripting>
+          <webServices>
+            <jsonSerialization maxJsonLength="500000">
+            </jsonSerialization>
+          </webServices>
+        </scripting>
+      </system.web.extensions>
+    </json_section_webclient>
+    <appsettings_changes_webclient type="xml">
+      <add key="OTHRActionYear" value="2014" />
+      <add key="HMZ4ActionYear" value="2014" />
+      <add key="HMDAActionYear" value="2014" />
+      <add key="BUSIActionYear" value="2014" />
+      <add key="CRAActionYear" value="2014" />
+      <add key="CensusYear" value="2010" />
+      <add key="cd_attachment_temp_store_location" value="c:\FileUploaded\" />
+      <add key="cd_attachment_max_file_size" value="5" />
+      <add key="cd_attachment_max_no_of_file" value="5" />
+      <add key="AssesmentAreaFolderName" value="bbe" />
+      <add key="smtp" value="localhost" />
+      <add key="smtpUserName" value="" />
+      <add key="smtpPassword" value="" />
+      <add key="maxCountExport" value="20" />
+      <add key="sqlCommandTimeOut" value="180" />
+      <add key="technical_support_bbe_version" value="@client_technical_support_bbe_version@" />
+      <add key="PCiServer.Platform.UtilityFunctions.DEM.Admin.ConnectionString" value="8UAPXMWe2hpSgUjrQf+2RCbdgtl/MIIWqgijvM33r5RpE+b9SDsWb4SaATAdWWJ7a8b4F1RGrQ7Gv9WljEl8FDPuaRpSXY7MArsmbmDSsaY=" />
+    </appsettings_changes_webclient>
+    <json_section_webadmin type="xml">
+      <system.web>
+        <machineKey validationKey="F7036183D9ABF105E4B063F4C329CC0D6C5C5469C0513167A635FC43A38CA717027B076C7DD6425C3CF016B4582AFC720ECC6B2F6FFAE33C4DD79D3E917B9D87" decryptionKey="6EA757E4DD387DE3A22D0C89B2AB58A88633E4A4D0917388FD1FBB43692B7B82" validation="SHA1" decryption="AES" />
+      </system.web>
+    </json_section_webadmin>
+    <appsettings_changes_webadmin type="xml">
+      <add key="lar_types" value="HMZ4,BUSI,HMDA,OTHR" />
+      <add key="Email_Notification_Send_For_Date" value="0" />
+    </appsettings_changes_webadmin>
+    <appsettings_changes_webadmin_update type="xml">
+      <add key="PCiServer.Platform.UtilityFunctions.DEM.Admin.ConnectionString" value="@encrypted_admin_connection_string_update@" />
+      <add key="technical_support_bbe_version" value="@admin_technical_support_bbe_version@" />
+      <add key="new_account_notification" value="Dear {0},&#xA;  &#xA;You have been granted access to CRA Wiz Browser Based Editing. This capability provides&#xA;direct access to edit and audit mortgage data as directed by your institution's CRA Wiz&#xA;system administrator. If you have not already received information about this process and&#xA;the guidelines for using the browser based editing application, please contact&#xA;{1}&#xA;&#xA;Your account has been established and you have the capability to edit (or edit and audit, or&#xA;audit) mortgage data. Your account information:&#xA;Username: {2} &#xA;Password: Provided in a separate communication&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{3}&#xA;&#xA;Upon initial login to the system, you will be prompted to change your default password.&#xA;Unless you already have an assigned task, you will not be able to access mortgage data.&#xA;Once a task is assigned to you, you will receive email notifications with the details of the&#xA;task.&#xA;&#xA;If you have questions or need any clarification, please contact me @&#xA;{4}&#xA; &#xA;Thank you,&#xA;System Administrator" />
+      <add key="password_reset_notification" value="Dear {0},&#xA;&#xA;Your password for browser based editing and auditing has been reset. The next time you&#xA;access your account, you will be prompted to change your password.&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{1}&#xA;&#xA;If you have questions or need any clarification, please contact me&#xA;{2}&#xA; &#xA;Thank you,&#xA;System Administrator&#xA;" />
+      <add key="task_assignment_notification" value="Dear {0},&#xA;&#xA;The following task is available for editing and/or data auditing review.&#xA;&#xA;LAR: {1}&#xA;Available for access from  {2} to {3}.&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{4}&#xA;&#xA;If you have questions or need any clarification, please contact me @&#xA;{5}&#xA; &#xA;Thank you,&#xA;System Administrator&#xA;" />
+    </appsettings_changes_webadmin_update>
+    <plarform_conf_changes type="xml">
+      <function>
+        <name>CalculateAutoCalcColumns</name>
+        <type_name>PCiServer.Platform.UtilityFunctions.General.GeneralUtilitiesFacade,Platform.UtilityFunctions.General</type_name>
+      </function>
+      <function>
+        <name>CreateTemporaryAttachment</name>
+        <type_name>PCiServer.Platform.UtilityFunctions.General.GeneralUtilitiesFacade,Platform.UtilityFunctions.General</type_name>
+      </function>
+      <function>
+        <name>ConvertToPermanent</name>
+        <type_name>PCiServer.Platform.UtilityFunctions.General.GeneralUtilitiesFacade,Platform.UtilityFunctions.General</type_name>
+      </function>
+      <function>
+        <name>GetAttachmentList</name>
+        <type_name>PCiServer.Platform.UtilityFunctions.General.GeneralUtilitiesFacade,Platform.UtilityFunctions.General</type_name>
+      </function>
+      <function>
+        <name>RemoveAttachment</name>
+        <type_name>PCiServer.Platform.UtilityFunctions.General.GeneralUtilitiesFacade,Platform.UtilityFunctions.General</type_name>
+      </function>
+    </plarform_conf_changes>
+    <appsettings_changes_webadmin_new type="xml">
+      <add key="security_key" value="fT3umeseD+yUjCYsliymp+BopmcEXS323TfzINf0T04=" />
+      <add key="PCiServer.Platform.UtilityFunctions.DEM.Admin.ConnectionString" value="8UAPXMWe2hpSgUjrQf+2RCbdgtl/MIIWqgijvM33r5RpE+b9SDsWb4SaATAdWWJ7vYD1NuPwusNVFKW0vhe92k750b/S8rrnkNhwmnQ0fRdajZywZ+/tyixFCRdUIBIx" />
+      <add key="PCiServer.Platform.UtilityFunctions.DEM.Admin.CRAWizLinkedServer" value="(local)" />
+      <add key="dem_client_url" value="http://localhost/BBE.Client/ViewPages/Login.aspx" />
+      <add key="administrator_email_id" value="administrator@wk.com" />
+      <add key="AutoLogin" value="true" />
+      <add key="AutoLoginCoreIDHeader" value="REMOTE_USER" />
+      <add key="Email_Integration" value="true" />
+      <add key="Smtp_Server" value="localhost" />
+      <add key="Display_Email_Exception" value="true" />
+      <add key="technical_support_bbe_version" value="@admin_technical_support_bbe_version@" />
+      <add key="new_account_notification" value="Dear {0},&#xA;  &#xA;You have been granted access to CRA Wiz Browser Based Editing. This capability provides&#xA;direct access to edit and audit mortgage data as directed by your institution's CRA Wiz&#xA;system administrator. If you have not already received information about this process and&#xA;the guidelines for using the browser based editing application, please contact&#xA;{1}&#xA;&#xA;Your account has been established and you have the capability to edit (or edit and audit, or&#xA;audit) mortgage data. Your account information:&#xA;Username: {2} &#xA;Password: Provided in a separate communication&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{3}&#xA;&#xA;Upon initial login to the system, you will be prompted to change your default password.&#xA;Unless you already have an assigned task, you will not be able to access mortgage data.&#xA;Once a task is assigned to you, you will receive email notifications with the details of the&#xA;task.&#xA;&#xA;If you have questions or need any clarification, please contact me @&#xA;{4}&#xA; &#xA;Thank you,&#xA;System Administrator" />
+      <add key="password_reset_notification" value="Dear {0},&#xA;&#xA;Your password for browser based editing and auditing has been reset. The next time you&#xA;access your account, you will be prompted to change your password.&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{1}&#xA;&#xA;If you have questions or need any clarification, please contact me&#xA;{2}&#xA; &#xA;Thank you,&#xA;System Administrator&#xA;" />
+      <add key="task_assignment_notification" value="Dear {0},&#xA;&#xA;The following task is available for editing and/or data auditing review.&#xA;&#xA;LAR: {1}&#xA;Available for access from  {2} to {3}.&#xA;&#xA;To access Browser Based Editing and Audit Review application, use the following address:  &#xA;{4}&#xA;&#xA;If you have questions or need any clarification, please contact me @&#xA;{5}&#xA; &#xA;Thank you,&#xA;System Administrator&#xA;" />
+    </appsettings_changes_webadmin_new>
+    <appsettings_changes_webclient_new type="xml">
+      <add key="institution_id" value="wizgeo" />
+      <add key="vendor_id" value="wizgeo" />
+      <add key="username" value="abc" />
+      <add key="password" value="xyz" />
+      <add key="AdminEmail" value="contact@bank.com" />
+      <add key="EnableCustomPage" value="true" />
+      <add key="LumigentWrapperType" value="Lumigent.LumigentWrapper,Lumigent" />
+      <add key="Lumigent_ServerName" value="HPWAMU" />
+      <add key="Lumigent_DBName" value="lumigent" />
+      <add key="Lumigent_RepositoryName" value="HPWAMU_Repository" />
+      <add key="Lumigent_DBUserName" value="sa" />
+      <add key="Lumigent_DBUserPassword" value="password" />
+      <add key="AutoLogin" value="false" />
+      <add key="AutoLoginCoreIDHeader" value="REMOTE_USER" />
+      <add key="PageValidation" value="false" />
+      <add key="show_quality_edits" value="false" />
+      <add key="Customization.RefreshAfterSave" value="true" />
+      <add key="summary_report_max_row_count" value="1000" />
+      <add key="technical_support_bbe_version" value="@client_technical_support_bbe_version@" />
+      <add key="show_manual_geocode_override" value="true" />
+      <add key="show_file_selection_report_link" value="true" />
+      <add key="show_edit_record_report_menu" value="true" />
+      <add key="log_performance_info" value="false" />
+      <add key="Sets" value="HOEPA,REGULAR,GEOCODE" />
+      <add key="allow_rate_spread_in_newrecord_mode" value="false" />
+      <add key="Security_Key" value="fT3umeseD+yUjCYsliymp+BopmcEXS323TfzINf0T04=" />
+      <add key="PCiServer.Platform.UtilityFunctions.DEM.Admin.ConnectionString" value="8UAPXMWe2hpSgUjrQf+2RCbdgtl/MIIWqgijvM33r5RpE+b9SDsWb4SaATAdWWJ7a8b4F1RGrQ7Gv9WljEl8FDPuaRpSXY7MArsmbmDSsaY=" />
+      <add key="LogFilePath" value="C:\BBEExceptionLog\BBE.log" />
+      <add key="verbose_mode" value="true" />
+    </appsettings_changes_webclient_new>
+    <geosettings_changes_webclient type="xml">
+      <GeoPath CensusYear="2000" DataPath="C:\Census2000GeoData" />
+      <GeoPath CensusYear="2010" DataPath="C:\Census2010GeoData" />
+      <MapPath DataPath="C:\Map Data" />
+    </geosettings_changes_webclient>
+    <json_section_webclient_platform type="xml">
+      <platform>
+        <batch_path_url_response_root>http://localhost/pciserverwebservice/output/</batch_path_url_response_root>
+        <batch_path_filepath_response_root>C:\Inetpub\wwwroot\PCiServerWebService\output\</batch_path_filepath_response_root>
+        <batch_queue_name>.\Private$\BatchQueue</batch_queue_name>
+        <service_retry_queue_name>.\Private$\BatchQueue</service_retry_queue_name>
+        <IsLicenseCheckRequired>true</IsLicenseCheckRequired>
+        <license_server_name>(local)</license_server_name>
+        <license_db_user_name>BBEUser</license_db_user_name>
+        <license_db_user_password>password</license_db_user_password>
+        <utility_functions_key>fT3umeseD+yUjCYsliymp+BopmcEXS323TfzINf0T04=</utility_functions_key>
+        <utility_functions_server_name>(local)</utility_functions_server_name>
+        <utility_functions_db_name>WizEnterpriseUtils</utility_functions_db_name>
+        <utility_functions_db_user_name>7wTz+cr3dNBjsQaiizOtLg==</utility_functions_db_user_name>
+        <utility_functions_db_user_password>BFYU6WX6DBunMJGl4ogxkw==</utility_functions_db_user_password>
+        <utility_functions_crawiz_linkedserver_name>(local)</utility_functions_crawiz_linkedserver_name>
+        <utility_functions_dem_linkedserver_name>(local)</utility_functions_dem_linkedserver_name>
+        <utility_functions_log_perf_info>true</utility_functions_log_perf_info>
+        <use_service_usage_logging>false</use_service_usage_logging>
+      </platform>
+      <geocoder_service>
+        <include_demog_vars>true</include_demog_vars>
+        <server_name>(local)</server_name>
+        <db_user_name>BBEUser</db_user_name>
+        <db_user_password>password</db_user_password>
+        <cache_demog_vars>false</cache_demog_vars>
+        <license_server_name>(local)</license_server_name>
+        <license_db_user_name>BBEUser</license_db_user_name>
+        <license_db_user_password>password</license_db_user_password>
+        <use_complus_mode>false</use_complus_mode>
+        <use_demog_configuration>false</use_demog_configuration>
+        <use_setting_configuration>false</use_setting_configuration>
+      </geocoder_service>
+      <geocoder_service_winservice>
+        <institution_id>1000</institution_id>
+        <vendor_id>1000</vendor_id>
+        <username>XZK45$%0</username>
+        <password>JK$%#@WEH</password>
+        <input_dir>c:\geo\input</input_dir>
+        <output_dir>c:\geo\output</output_dir>
+      </geocoder_service_winservice>
+      <lar_service>
+        <server_name>(local)</server_name>
+        <db_name>LarService</db_name>
+        <db_user_name>BBEUser</db_user_name>
+        <db_user_password>password</db_user_password>
+        <current_year>2014</current_year>
+        <current_year_hmz4>2014</current_year_hmz4>
+        <current_year_hmda>2014</current_year_hmda>
+        <census_year>2010</census_year>
+      </lar_service>
+      <ratespread_service>
+        <server_name>(local)</server_name>
+        <db_user_name>BBEUser</db_user_name>
+        <db_user_password>password</db_user_password>
+      </ratespread_service>
+      <flood_service>
+        <flood_wiz_url>http://199.0.95.76/WizServer/Envelop_Mismo_Processing.asp</flood_wiz_url>
+      </flood_service>
+      <ofac_service>
+        <ofac_url>https://attuswebsolutions.com/AttusDemo/AttusTechLookup/lookupservice.asmx</ofac_url>
+      </ofac_service>
+      <wizsentinel_service>
+        <wizsentinel_url>http://pcistaging.experity.com/plmr2/PLMDetailXML/PLMXMLLogin.asp?Event=PLMXML_LOGIN</wizsentinel_url>
+      </wizsentinel_service>
+      <internet_gateway>
+        <http_gateway>tcp://localhost:8080/HttpGateway</http_gateway>
+      </internet_gateway>
+    </json_section_webclient_platform>
+    <system_web_update type="xml">
+      <system.web>
+        <machineKey validationKey="F7036183D9ABF105E4B063F4C329CC0D6C5C5469C0513167A635FC43A38CA717027B076C7DD6425C3CF016B4582AFC720ECC6B2F6FFAE33C4DD79D3E917B9D87" decryptionKey="6EA757E4DD387DE3A22D0C89B2AB58A88633E4A4D0917388FD1FBB43692B7B82" validation="SHA1" decryption="AES" />
+        <httpModules>
+          <add type="MapInfo.Engine.WebSessionActivator, MapInfo.CoreEngine, Version=7.0.0.200, Culture=neutral, PublicKeyToken=93e298a0f6b95eb1" name="WebSessionActivator" />
+        </httpModules>
+      </system.web>
+      <system.webServer>
+        <modules>
+          <add type="MapInfo.Engine.WebSessionActivator, MapInfo.CoreEngine, Version=7.0.0.200, Culture=neutral, PublicKeyToken=93e298a0f6b95eb1" name="WebSessionActivator" />
+        </modules>
+      </system.webServer>
+    </system_web_update>
+  </variable>
+</config>
